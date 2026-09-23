@@ -101,8 +101,7 @@ setTimeout(() => {
 
       formData.append("resume", resume);
 
-      const response = await fetch(
-        "http://127.0.0.1:5000/api/analyze",
+      fetch("https://careerai-backend-a72u.onrender.com/api/analyze",
         {
           method: "POST",
           body: formData,
