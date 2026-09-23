@@ -83,25 +83,23 @@ function App() {
     setAnalyzing(true);
     setError("");
     setResult(null);
-    setAnalyzing(true);
-setError("");
-setResult(null);
 
-setTimeout(() => {
-  document
-    .querySelector(".upload-box")
-    ?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-}, 100);
+    setTimeout(() => {
+      document
+        .querySelector(".upload-box")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+    }, 100);
 
     try {
       const formData = new FormData();
 
       formData.append("resume", resume);
 
-      fetch("https://careerai-backend-a72u.onrender.com/api/analyze",
+      const response = await fetch(
+        "https://careerai-backend-a72u.onrender.com/api/analyze",
         {
           method: "POST",
           body: formData,
@@ -127,10 +125,11 @@ setTimeout(() => {
           });
       }, 300);
     } catch (err) {
-      console.error(err);
+      console.error("CareerAI Analyzer Error:", err);
 
       setError(
-        "Backend connection failed. Please make sure Flask is running on port 5000."
+        err.message ||
+          "Unable to connect to CareerAI backend."
       );
     } finally {
       setAnalyzing(false);
@@ -171,6 +170,7 @@ setTimeout(() => {
           </div>
 
           <div className="nav-links">
+
             <a
               href="#top"
               onClick={(e) => {
@@ -184,6 +184,7 @@ setTimeout(() => {
             <a href="#analyzer">
               Resume Analyzer
             </a>
+
           </div>
 
           <button
@@ -756,7 +757,10 @@ setTimeout(() => {
         <div className="feature-grid">
 
           <div className="feature-card">
-            <div className="feature-icon">📄</div>
+
+            <div className="feature-icon">
+              📄
+            </div>
 
             <h3>
               Resume Analysis
@@ -766,10 +770,14 @@ setTimeout(() => {
               Upload your PDF or DOCX resume and let
               CareerAI analyze your technical skills.
             </p>
+
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">🧠</div>
+
+            <div className="feature-icon">
+              🧠
+            </div>
 
             <h3>
               Skill Intelligence
@@ -779,10 +787,14 @@ setTimeout(() => {
               Discover your existing skills and identify
               important missing career skills.
             </p>
+
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">🎯</div>
+
+            <div className="feature-icon">
+              🎯
+            </div>
 
             <h3>
               Career Match
@@ -792,10 +804,14 @@ setTimeout(() => {
               Get a quick skill-based match score from
               your resume analysis.
             </p>
+
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">🚀</div>
+
+            <div className="feature-icon">
+              🚀
+            </div>
 
             <h3>
               Career Growth
@@ -805,6 +821,7 @@ setTimeout(() => {
               Understand where you can improve and build
               stronger career opportunities.
             </p>
+
           </div>
 
         </div>
@@ -840,6 +857,7 @@ setTimeout(() => {
             </div>
 
             <div>
+
               <h3>
                 Upload Resume
               </h3>
@@ -847,6 +865,7 @@ setTimeout(() => {
               <p>
                 Upload your PDF or DOCX resume.
               </p>
+
             </div>
 
           </div>
@@ -858,6 +877,7 @@ setTimeout(() => {
             </div>
 
             <div>
+
               <h3>
                 AI Analysis
               </h3>
@@ -865,6 +885,7 @@ setTimeout(() => {
               <p>
                 CareerAI extracts and analyzes your skills.
               </p>
+
             </div>
 
           </div>
@@ -876,6 +897,7 @@ setTimeout(() => {
             </div>
 
             <div>
+
               <h3>
                 Get Intelligence
               </h3>
@@ -883,6 +905,7 @@ setTimeout(() => {
               <p>
                 View your score, skills and missing skills.
               </p>
+
             </div>
 
           </div>
